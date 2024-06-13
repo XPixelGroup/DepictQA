@@ -1,0 +1,6 @@
+numba==0.58.1
+numpy==1.24.4
+openai==1.8.0
+opencv-python-headless==4.9.0.80
+scikit-image==0.21.0
+scipy==1.10.1
