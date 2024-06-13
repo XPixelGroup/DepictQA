@@ -155,21 +155,20 @@ You can revise the server config in _serve.yaml_. The url of deployed demo will 
     [
         {
             "id": unique id of each sample, required, 
-            "image_ref": reference image, null if not, 
-            "image_A": image A, null if not, 
-            "image_B": image B, null if not, 
-            "query": input question to DepictQA, required, 
+            "image_ref": reference image, null if not applicable, 
+            "image_A": image A, null if not applicable, 
+            "image_B": image B, null if not applicable, 
+            "query": input question, required, 
         }, 
         ...
     ]
-
     ```
 
 - cd your experiment directory: `cd your_experiment_directory`
 
 - Check [Installation](#installation) to make sure (1) the environment is installed, (2) CLIP-ViT-L-14, Vicuna-v1.5-7B, and the pretrained delta checkpoint are downloaded and (3) their paths are set in _config.yaml_. 
 
-- Construct infer shell as follows.
+- Construct your infer shell as follows.
 
     ```
     #!/bin/bash
