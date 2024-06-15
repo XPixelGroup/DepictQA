@@ -51,8 +51,7 @@ def cal_confidence(model, inputs, text, output_id, prob):
             return confidence
         except:
             confidence = None
-    # detail
-    if model.sentence_model:
+    elif model.sentence_model:  # detail
         confidence = cal_confidence_detail(model, text, output_id, prob)
     else:
         confidence = None
@@ -61,10 +60,10 @@ def cal_confidence(model, inputs, text, output_id, prob):
 
 def cal_confidence_single_brief(model, inputs, output_id, prob):
     for tail in single_q_tail_list:
-        if tail in inputs["prompt"][0]:
+        if tail in inputs["query"][0]:
             confidence = _cal_confidence_single_brief(output_id, prob)
             return confidence
-    inputs["prompt"][0] = inputs["prompt"][0] + single_q_tail
+    inputs["query"][0] = inputs["query"][0] + single_q_tail
     _, _, _, confidence = model.generate(inputs)
     return confidence[0]
 
@@ -99,10 +98,10 @@ def _cal_confidence_single_brief(output_id, prob):
 
 def cal_confidence_compare_brief(model, inputs, output_id, prob):
     for tail in single_q_tail_list:
-        if tail in inputs["prompt"][0]:
+        if tail in inputs["query"][0]:
             confidence = _cal_confidence_compare_brief(output_id, prob)
             return confidence
-    inputs["prompt"][0] = inputs["prompt"][0] + single_q_tail
+    inputs["query"][0] = inputs["query"][0] + single_q_tail
     _, _, _, confidence = model.generate(inputs)
     return confidence[0]
 
