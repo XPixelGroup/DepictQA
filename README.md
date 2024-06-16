@@ -109,7 +109,7 @@ We provide a gradio demo for local test.
 
 - Launch gradio server: `sh launch_gradio.sh`
 
-- Launch DepictQA worker: `sh launch_worker.sh`
+- Launch DepictQA worker: `sh launch_worker.sh id_of_one_gpu`
 
 You can revise the server config in _serve.yaml_. The url of deployed demo will be _http://{serve.gradio.host}:{serve.gradio.port}_. The default url is http://0.0.0.0:12345 if you do not revise _serve.yaml_. 
 
