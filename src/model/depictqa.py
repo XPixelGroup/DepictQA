@@ -418,7 +418,13 @@ class DepictQA(nn.Module):
         bsz, n = input_embs.shape[:2]
         attn_mask = torch.ones((bsz, n), dtype=torch.long).to(self.device)
         for idx in range(bsz):
-            attn_mask[idx, : -len_id[idx]] = 0
+            """
+            A small proportion of samples (around 0.1%) suffer from stuck for batch inference.
+            This is because the padding operation in batch inference. Two ways to solve:
+            1. Set batch size = 1.
+            2. Do not mask padding tokens if batch size is larger than 1 (as follows).
+            """
+            # attn_mask[idx, : -len_id[idx]] = 0
             input_embs_[idx, -len_id[idx] :, :] = input_embs[idx, : len_id[idx], :]
             input_embs_[idx, : -len_id[idx], :] = input_embs[idx, len_id[idx] :, :]
         return input_embs_, attn_mask
