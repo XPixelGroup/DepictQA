@@ -8,7 +8,7 @@
 
 <p align="center">
     <font size='4'>
-        <a href="https://depictqa.github.io/" target="_blank">🌏 Project Page</a> • 🤗 Demo (coming) • 📀 Data (coming) • Models (coming)
+        <a href="https://depictqa.github.io/" target="_blank">🌏 Project Page</a> • 🤗 Demo (coming) • 📀 Data (coming)
     </font>
 </p>
 
@@ -74,12 +74,12 @@ Official pytorch implementation of the papers:
     If models are stored in different directories, revise _config.model.vision\_encoder\_path_, _config.model.llm\_path_, and _config.model.sentence\_model_ in _config.yaml_ (under the experiments directory) to set new paths. 
 
 
-- Move our pretrained delta checkpoint to a specific experiment directory (_e.g._, DQ-495K) as follows. 
+- Move our pretrained delta checkpoint to a specific experiment directory (_e.g._, DQ495K, DQ495K_QPath) as follows. 
 
     ```
     |-- DepictQA
         |-- experiments
-            |-- DQ-495K
+            |-- a_specific_experiment_directory
                 |-- ckpt
                     |-- ckpt.pt
     ```
@@ -89,11 +89,11 @@ Official pytorch implementation of the papers:
 
 ## Models
 
-| Training Data | Tune | Hugging Face |
-| -------- | -------- | -------- |
-| DQ495K + Q-Instruct + Co-Instruct | LORA | - |
-| DQ495K + Q-Instruct | LORA | - |
-| DQ495K | LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K) |
+| Training Data | Tune | Hugging Face | Description | 
+| -------- | -------- | -------- | -------- |
+| DQ-495K + Q-Instruct | LORA | - | - |
+| DQ-495K + Q-Pathway | LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K-QPath) | Trained on DQ-495K and Q-Pathway (see [paper](https://arxiv.org/abs/2311.06783)) datasets. Performs well on real images, but degrades in comparison tasks. |
+| DQ-495K | LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K) | Trained on DQ-495K dataset. Used in our paper. |
 
 
 ## Demos
@@ -110,7 +110,7 @@ We provide an online demo (coming soon) deployed on huggingface spaces.
 
 We provide a gradio demo for local test. 
 
-- cd the experiment directory: `cd experiments/DQ-495K`
+- cd a specific experiment directory: `cd experiments/a_specific_experiment_directory`
 
 - Check [Installation](#installation) to make sure (1) the environment is installed, (2) CLIP-ViT-L-14, Vicuna-v1.5-7B, and the pretrained delta checkpoint are downloaded and (3) their paths are set in _config.yaml_. 
 
@@ -139,18 +139,18 @@ You can revise the server config in _serve.yaml_. The url of deployed demo will 
 
 ## Training
 
-- cd the experiment directory: `cd experiments/DQ-495K`
+- cd a specific experiment directory: `cd experiments/a_specific_experiment_directory`
 
 - Check [Installation](#installation) to make sure (1) the environment is installed, (2) CLIP-ViT-L-14 and Vicuna-v1.5-7B are downloaded and (3) their paths are set in _config.yaml_. 
 
-- Run training: `sh train_dq495k.sh`. 
+- Run training: `sh train.sh`. 
 
 
 ## Inference
 
 ### Inference on Our Benchmark
 
-- cd the experiment directory: `cd experiments/DQ-495K`
+- cd a specific experiment directory: `cd experiments/a_specific_experiment_directory`
 
 - Check [Installation](#installation) to make sure (1) the environment is installed, (2) CLIP-ViT-L-14, Vicuna-v1.5-7B, and the pretrained delta checkpoint are downloaded and (3) their paths are set in _config.yaml_. 
 
