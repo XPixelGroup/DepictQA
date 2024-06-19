@@ -1,4 +1,4 @@
-log_dir: ./log_serve/
+log_dir: ../log_serve/
 controller:
   host: 0.0.0.0
   port: 10000

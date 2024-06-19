@@ -1,4 +1,4 @@
-log_dir: ./log_serve/
+log_dir: ../log_serve/
 controller:
   host: 0.0.0.0
   port: 10000
@@ -9,15 +9,15 @@ gradio:
   controller_url: http://0.0.0.0:10000
   concurrency_count: 10
   model_list_mode: reload  # [once, reload]
-  share: true
+  share: false
   moderate: false
   embed: false
 worker:
   host: 0.0.0.0
-  port: 22222
-  worker_url: http://0.0.0.0:22222
+  port: 33333
+  worker_url: http://0.0.0.0:33333
   controller: http://0.0.0.0:10000
-  model_name: DepictQA_vicuna_v1_7B
+  model_name: DepictQA_vicuna_v1_7B_QPath
   limit_model_concurrency: 5
   stream_interval: 1
   no_register: false

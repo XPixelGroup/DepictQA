@@ -122,6 +122,7 @@ We provide a gradio demo for local test.
 
 You can revise the server config in _serve.yaml_. The url of deployed demo will be _http://{serve.gradio.host}:{serve.gradio.port}_. The default url is http://0.0.0.0:12345 if you do not revise _serve.yaml_. 
 
+Note that **multiple workers can be launched simultaneously**. For each worker, _serve.worker.host_, _serve.worker.port_, _serve.worker.worker\_url_, and _serve.worker.model\_name_ should be unique. 
 
 ## DQ-495K Dataset
 
@@ -221,7 +222,9 @@ You can revise the server config in _serve.yaml_. The url of deployed demo will 
 
 - Run basic evaluation (_e.g._, _cal\_acc\_single\_distortion.py_): 
 
-    ```python cal_acc_single_distortion.py --pred_path predict_json_path --gt_path ground_truth_json_path```
+    ```
+    python cal_acc_single_distortion.py --pred_path predict_json_path --gt_path ground_truth_json_path
+    ```
 
     Some specific parameters are explained as follows. 
 
