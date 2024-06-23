@@ -1,0 +1,23 @@
+log_dir: ../log_serve/
+controller:
+  host: 0.0.0.0
+  port: 10000
+  dispatch_method: shortest_queue  # [lottery, shortest_queue]
+gradio:
+  host: 0.0.0.0
+  port: 12345
+  controller_url: http://0.0.0.0:10000
+  concurrency_count: 10
+  model_list_mode: reload  # [once, reload]
+  share: false
+  moderate: false
+  embed: false
+worker:
+  host: 0.0.0.0
+  port: 44444
+  worker_url: http://0.0.0.0:44444
+  controller: http://0.0.0.0:10000
+  model_name: DepictQA_vicuna_v1_7B_QInst
+  limit_model_concurrency: 5
+  stream_interval: 1
+  no_register: false
