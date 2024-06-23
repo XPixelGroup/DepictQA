@@ -91,7 +91,7 @@ Official pytorch implementation of the papers:
 
 | Training Data | Tune | Hugging Face | Description | 
 | -------- | -------- | -------- | -------- |
-| DQ-495K + Q-Instruct | LORA | - | - |
+| DQ-495K + Q-Instruct | LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K-QInst) | Trained on DQ-495K and Q-Instruct (see [paper](https://arxiv.org/abs/2311.06783)) datasets. Able to complete multiple-choice, yes-or-no, what, how questions, but degrades in assessing and comparison tasks. |
 | DQ-495K + Q-Pathway | LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K-QPath) | Trained on DQ-495K and Q-Pathway (see [paper](https://arxiv.org/abs/2311.06783)) datasets. Performs well on real images, but degrades in comparison tasks. |
 | DQ-495K | LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K) | Trained on DQ-495K dataset. Used in our paper. |
 
