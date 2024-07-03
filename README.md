@@ -14,13 +14,13 @@
 
 Official pytorch implementation of the papers: 
 
-- DepictQA-Wild (DepictQA-V2): [paper](https://arxiv.org/abs/2405.18842), [project page](https://depictqa.github.io/depictqa-wild/). 
+- DepictQA-Wild (DepictQA-v2): [paper](https://arxiv.org/abs/2405.18842), [project page](https://depictqa.github.io/depictqa-wild/). 
 
-    Zhiyuan You, Jinjin Gu, Zheyuan Li, Xin Cai, Kaiwen Zhu, Chao Dong, and Tianfan Xue. "Descriptive Image Quality Assessment in the Wild." arXiv preprint arXiv:2405.18842 (2024).
+    Zhiyuan You, Jinjin Gu, Zheyuan Li, Xin Cai, Kaiwen Zhu, Chao Dong, Tianfan Xue, "Descriptive Image Quality Assessment in the Wild," arXiv preprint arXiv:2405.18842, 2024.
 
-- DepictQA: [paper](https://arxiv.org/abs/2312.08962), [project page](https://depictqa.github.io/depictqa-v1/). 
+- DepictQA-v1: [paper](https://arxiv.org/abs/2312.08962), [project page](https://depictqa.github.io/depictqa-v1/). 
 
-    Zhiyuan You, Zheyuan Li, Jinjin Gu, Zhenfei Yin, Tianfan Xue, and Chao Dong. "Depicting beyond scores: Advancing image quality assessment through multi-modal language models." arXiv preprint arXiv:2312.08962 (2023).
+    Zhiyuan You, Zheyuan Li, Jinjin Gu, Zhenfei Yin, Tianfan Xue, Chao Dong, "Depicting beyond scores: Advancing image quality assessment through multi-modal language models," ECCV, 2024.
 
 <p align="center">
     <img src="docs/res.png">
@@ -31,9 +31,11 @@ Official pytorch implementation of the papers:
 
 📆 [Coming soon] Online demo. 
 
-📆 [2024.05] We release [DepictQA-Wild](https://depictqa.github.io/depictqa-wild/) (DepictQA-V2): a multi-functional in-the-wild descriptive image quality assessment model.
+📆 [2024.07] [DepictQA-v1](https://depictqa.github.io/depictqa-v1/) was accepted to ECCV 2024.
 
-📆 [2023.12] We release [DepictQA](https://depictqa.github.io/depictqa-v1/), a multi-modal image quality assessment model based on vision language models.
+📆 [2024.05] We released [DepictQA-Wild](https://depictqa.github.io/depictqa-wild/) (DepictQA-v2): a multi-functional in-the-wild descriptive image quality assessment model.
+
+📆 [2023.12] We released [DepictQA-v1](https://depictqa.github.io/depictqa-v1/), a multi-modal image quality assessment model based on vision language models.
 
 ## Installation
 
