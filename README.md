@@ -8,7 +8,7 @@
 
 <p align="center">
     <font size='4'>
-        <a href="https://depictqa.github.io/" target="_blank">🌏 Project Page</a> • 🤗 Demo (coming) • 📀 Data (coming)
+        <a href="https://depictqa.github.io/" target="_blank">🌏 Project Page</a> • 🤗 Demo (coming) • <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">📀 Datasets</a>
     </font>
 </p>
 
@@ -130,7 +130,7 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
 
 - See details of our DQ-495K dataset construction in [here](./build_datasets/). 
 
-- Download DQ-495K dataset from huggingface (coming soon). Move the dataset to the same directory of this repository as follows. 
+- Download DQ-495K dataset from <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a>. Move the dataset to the same directory of this repository as follows. 
 
     ```
     |-- DataDepictQA
