@@ -97,6 +97,7 @@ class CustomTransform:
         self,
         patch_size=14,
         resize=224,
+        min_size=70,
         max_size=672,
         crop_ratio=[0.7, 1.0],
         keep_ratio=True,
@@ -104,6 +105,7 @@ class CustomTransform:
     ):
         self.patch_size = patch_size
         self.resize = resize
+        self.min_size = min_size
         self.max_size = max_size
         self.crop_ratio = crop_ratio
         self.keep_ratio = keep_ratio
@@ -125,15 +127,16 @@ class CustomTransform:
                 img = img.resize((w_new, h_new), resample=Image.BICUBIC)
             else:
                 img = img.resize((self.resize, self.resize), resample=Image.BICUBIC)
-            # random crop
-            if self.random_crop:
-                h, w = img.height, img.width
-                crop_ratio_h = random.uniform(self.crop_ratio[0], self.crop_ratio[1])
-                crop_ratio_w = random.uniform(self.crop_ratio[0], self.crop_ratio[1])
-                h_crop, w_crop = int(h * crop_ratio_h), int(w * crop_ratio_w)
-                img = center_crop(img, (h_crop, w_crop))
-        # padding to 14 X N shapes
+        # random crop
         h, w = img.height, img.width
+        if self.random_crop and self.min_size < min(h, w):
+            crop_ratio_min = self.min_size / min(h, w)
+            crop_ratio_h = max(random.uniform(self.crop_ratio[0], self.crop_ratio[1]), crop_ratio_min)
+            crop_ratio_w = max(random.uniform(self.crop_ratio[0], self.crop_ratio[1]), crop_ratio_min)
+            h_crop, w_crop = round(h * crop_ratio_h), round(w * crop_ratio_w)
+            img = center_crop(img, (h_crop, w_crop))
+        # padding to 14 X N shapes
+        h, w = max(self.min_size, img.height), max(self.min_size, img.width)
         h_pad, w_pad = [
             int(math.ceil(_ / self.patch_size) * self.patch_size) for _ in [h, w]
         ]
