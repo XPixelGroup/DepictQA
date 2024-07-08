@@ -8,7 +8,7 @@
 
 <p align="center">
     <font size='4'>
-        <a href="https://depictqa.github.io/" target="_blank">🌏 Project Page</a> • 🤗 Demo (coming) • <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">📀 Datasets</a>
+        <a href="https://depictqa.github.io/" target="_blank">🌏 Project Page</a> • 🤗 Demo (coming) • 📀 Datasets ( <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a> / <a href="https://modelscope.cn/datasets/zhiyuanyou/DataDepictQA" target="_blank">modelscope</a> )
     </font>
 </p>
 
@@ -30,6 +30,8 @@ Official pytorch implementation of the papers:
 ## Update
 
 📆 [Coming soon] Online demo. 
+
+📆 [2024.07] DepictQA datasets were released in <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a> / <a href="https://modelscope.cn/datasets/zhiyuanyou/DataDepictQA" target="_blank">modelscope</a>.
 
 📆 [2024.07] [DepictQA-v1](https://depictqa.github.io/depictqa-v1/) was accepted to ECCV 2024.
 
@@ -126,11 +128,11 @@ You can revise the server config in _serve.yaml_. The url of deployed demo will 
 
 Note that **multiple workers can be launched simultaneously**. For each worker, _serve.worker.host_, _serve.worker.port_, _serve.worker.worker\_url_, and _serve.worker.model\_name_ should be unique. 
 
-## DQ-495K Dataset
+## Datasets
 
-- See details of our DQ-495K dataset construction in [here](./build_datasets/). 
+- Source codes for DQ-495K (used in DepictQA-v2) dataset construction are provided in [here](./build_datasets/). 
 
-- Download DQ-495K dataset from <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a>. Move the dataset to the same directory of this repository as follows. 
+- Download MBAPPS (used in DepictQA-v1) and DQ-495K (used in DepictQA-v2) datasets from <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a> / <a href="https://modelscope.cn/datasets/zhiyuanyou/DataDepictQA" target="_blank">modelscope</a>. Move the dataset to the same directory of this repository as follows. 
 
     ```
     |-- DataDepictQA
@@ -138,7 +140,6 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
     ```
 
     If the dataset is stored in another directory, revise _config.data.root\_dir_ in _config.yaml_ (under the experiments directory) to set new path. 
-
 
 ## Training
 
