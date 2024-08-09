@@ -11,7 +11,7 @@ from transformers import LlamaTokenizer, StoppingCriteriaList
 
 from model.conversations import conversation_dict, system_dict
 
-from .clip import load_clip
+from .clip import build_abstractor, load_clip
 from .model_llama import LlamaForCausalLM
 from .utils import VISION_TAGS, DepictQAStop, cal_confidence_batch
 
@@ -71,6 +71,12 @@ class DepictQA(nn.Module):
         self.tokenizer.padding_side = "right"
         logging.info("LLM initialized.")
 
+        self.abstractor = nn.Identity()
+        if args.model.get("abstractor", None):
+            args.model.abstractor["hidden_dim"] = self.vision_size
+            self.abstractor = build_abstractor(args.model["abstractor"])
+            logging.info("Vision abstractor initialized.")
+
         self.vision_proj = nn.Linear(self.vision_size, self.llm.config.hidden_size)
         logging.info("Vision projection layer initialized.")
 
@@ -94,7 +100,7 @@ class DepictQA(nn.Module):
             assert self.vision_feature_type == "local"
             with torch.no_grad():
                 img_embs = self.vision_encoder.forward_patch_features(imgs)  # [B, N, C]
-            img_embs = self.vision_proj(img_embs)  # [B, N, C]
+            img_embs = self.vision_proj(self.abstractor(img_embs))  # [B, N, C]
         return img_embs
 
     def load_img(self, img_paths, device):
