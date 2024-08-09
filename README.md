@@ -221,7 +221,8 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
     | `cal_acc_single_distortion.py` | accuracy of single-distortion identification |
     | `cal_acc_multi_distortion.py` | accuracy of multi-distortion identification |
     | `cal_acc_rating.py` | accuracy of instant rating |
-    | `cal_gpt4_score_detail.py` | GPT-4 score of detailed reasoning tasks |
+    | `cal_gpt4_score_detail_v1.py` | GPT-4 score of detailed reasoning tasks in DepictQA-v1. Treat both prediction and ground truth as assistants, calculate the relative score of prediction over ground truth. |
+    | `cal_gpt4_score_detail_v2.py` | GPT-4 score of detailed reasoning tasks in DepictQA-v2. Only treat prediction as an assistant, directly assess the consistency between prediction and ground truth. |
 
 - Run basic evaluation (_e.g._, _cal\_acc\_single\_distortion.py_): 
 
