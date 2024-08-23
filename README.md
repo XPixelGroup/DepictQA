@@ -147,7 +147,7 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
 
 - Check [Installation](#installation) to make sure (1) the environment is installed, (2) CLIP-ViT-L-14 and Vicuna-v1.5-7B are downloaded and (3) their paths are set in _config.yaml_. 
 
-- Run training: `sh train.sh`. 
+- Run training: `sh train.sh ids_of_gpus`. 
 
 
 ## Inference
