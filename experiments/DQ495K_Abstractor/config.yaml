@@ -1,0 +1,133 @@
+seed: 131
+
+data:
+  root_dir: ../../../DataDepictQA
+  num_workers: 2
+  train:
+    meta_paths_weights: [
+      [KONIQ/metas/train_AB_mix_koniq_100k.json, 1], 
+      [SPAQ/metas/train_AB_mix_spaq_100k.json, 1], 
+      [BAPPS/metas/train_refAB_mix_bapps_115k.json, 1], 
+      [BAPPS/metas/train_AB_mix_bapps_115k.json, 1], 
+      [PIPAL/metas/train_refAB_mix_pipal_70k.json, 1], 
+      [PIPAL/metas/train_AB_mix_pipal_70k.json, 1], 
+      [KADID10K/metas/train_refAB_mix_kadid_30k.json, 1], 
+      [KADID10K/metas/train_AB_mix_kadid_30k.json, 1], 
+      [KADIS700K_s384/refAB_sd_detail/metas/train_refAB_sd_detail_20k.json, 5], 
+      [KADIS700K_s384/AB_sd_detail/metas/train_AB_sd_detail_20k.json, 5], 
+      [KADIS700K_s384/refAB_md_detail/metas/train_refAB_md_detail_8k.json, 5], 
+      [KADIS700K_s384/AB_md_detail/metas/train_AB_md_detail_8k.json, 5], 
+      [KADIS700K_s384/metas_combine/refA_sd_md/train_refA_mix_sd84k_md28k.json, 1], 
+      [KADIS700K_s384/metas_combine/A_sd_md/train_A_mix_sd80k_md27k.json, 1],
+      [KADIS700K_s384/refA_sd_detail/metas/train_refA_sd_detail_20k.json, 5], 
+      [KADIS700K_s384/A_sd_detail/metas/train_A_sd_detail_20k.json, 5], 
+      [KADIS700K_s384/refA_md_detail/metas/train_refA_md_detail_8k.json, 5], 
+      [KADIS700K_s384/A_md_detail/metas/train_A_md_detail_8k.json, 5], 
+      [DetailDescriptionLAMM/metas/detailed_description_49k.json, 4], 
+    ]  # [[path, weight], ...]
+  infer:  # set args to overwrite cfg.data.infer
+    meta_path: null
+    dataset_name: null
+    task_name: null
+    batch_size: null
+
+# model
+model:
+  vision_encoder_path: ../../../ModelZoo/CLIP/clip/ViT-L-14.pt
+  vision_feature_type: local  # [local, global]
+  abstractor:
+    dim_feedforward: 2048
+    nhead: 8
+    num_layers: 4
+    num_query: 64
+    dropout: 0.1
+    add_pos_emd: false  # clip has added pos_emb
+  llm_path: ../../../ModelZoo/LLM/vicuna/vicuna-7b-v1.5/
+  llm_conv_type: vicuna_v1  # conv -> conversation
+  lora:  # lora hyper-parameters
+    lora_r: 16
+    lora_alpha: 16
+    lora_dropout: 0.1
+    lora_target_modules: ['q_proj', 'k_proj', 'v_proj', 'o_proj']
+  delta_path: ./ckpt/ckpt.pt  # load trained params, for resume / infer
+  unique_tag: true
+
+# train
+train:
+  epochs: 1
+  warmup_rate: 0.1
+  log_step: 5
+  save_freq_step: 5000  # can be set null
+  save_freq_epoch: 1
+  save_dir: ./ckpt/
+  log_dir: ./log/
+  max_tokens: 512  # query + answer (no system & vision)
+
+# infer
+infer:
+  output_prob_id: false
+  output_confidence: true
+  sentence_model: ../../../ModelZoo/SentenceTransformers/all-MiniLM-L6-v2
+  answer_dir: ./answers/
+  # IQA needs deterministic answers, e.g., A / B is better, so temperature = 0.0
+  temperature: 0.0  # 0.0 -> do_sample = False
+  top_p: 0.9
+  max_new_tokens: 400  # only answer
+
+# resize & random crop
+vision_preprocess:
+  patch_size: 14
+  resize: 1024
+  min_size: 70
+  max_size: 2048
+  crop_ratio: [0.7, 1.]
+  keep_ratio: true
+
+# deepspeed arguments
+deepspeed:
+  train_micro_batch_size_per_gpu: 1
+  gradient_accumulation_steps: 16
+  gradient_clipping: 1.0
+  steps_per_print: 1
+
+  zero_optimization:
+    allgather_bucket_size: 500000000
+    allgather_partitions: true
+    contiguous_gradients: true
+    offload_optimizer:
+      device: cpu
+    stage: 1
+
+  optimizer:
+    type: Adam
+    params:
+      betas:
+      - 0.9
+      - 0.95
+      eps: 1.0e-08
+      lr: 0.0002
+      weight_decay: 0.001
+
+  scheduler:
+    type: WarmupDecayLR
+    params:
+      total_num_steps: 20000
+      warmup_max_lr: 0.0002
+      warmup_min_lr: 1.0e-08
+      warmup_num_steps: 10
+
+  fp16:
+    enabled: true
+    min_loss_scale: 1
+    opt_level: O2
+
+  bf16:
+    enable: false
+
+  activation_checkpointing:
+    partition_activations: true
+    cpu_checkpointing: true
+    contiguous_memory_optimization: false
+    number_checkpoints: null
+    synchronize_checkpoint_boundary: false
+    profile: false
