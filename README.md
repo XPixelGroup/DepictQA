@@ -8,7 +8,7 @@
 
 <p align="center">
     <font size='4'>
-        <a href="https://depictqa.github.io/" target="_blank">🌏 Project Page</a> • 🤗 Demo (coming) • 📀 Datasets ( <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a> / <a href="https://modelscope.cn/datasets/zhiyuanyou/DataDepictQA" target="_blank">modelscope</a> )
+        <a href="https://depictqa.github.io/" target="_blank">🌏 Project Page</a> • 📀 Datasets ( <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a> / <a href="https://modelscope.cn/datasets/zhiyuanyou/DataDepictQA" target="_blank">modelscope</a> )
     </font>
 </p>
 
@@ -28,8 +28,6 @@ Official pytorch implementation of the papers:
 
 
 ## Update
-
-📆 [Coming soon] Online demo. 
 
 📆 [2024.07] DepictQA datasets were released in <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a> / <a href="https://modelscope.cn/datasets/zhiyuanyou/DataDepictQA" target="_blank">modelscope</a>.
 
@@ -95,9 +93,10 @@ Official pytorch implementation of the papers:
 
 | Training Data | Tune | Hugging Face | Description | 
 | -------- | -------- | -------- | -------- |
-| DQ-495K + Q-Instruct | LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K-QInst) | Trained on DQ-495K and Q-Instruct (see [paper](https://arxiv.org/abs/2311.06783)) datasets. Able to complete multiple-choice, yes-or-no, what, how questions, but degrades in assessing and comparison tasks. |
-| DQ-495K + Q-Pathway | LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K-QPath) | Trained on DQ-495K and Q-Pathway (see [paper](https://arxiv.org/abs/2311.06783)) datasets. Performs well on real images, but degrades in comparison tasks. |
-| DQ-495K | LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K) | Trained on DQ-495K dataset. Used in our paper. |
+| DQ-495K + KonIQ + SPAQ | Abstractor, LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-Abstractor-DQ495K) | Vision abstractor to reduce token numbers. Trained on DQ-495K, KonIQ, and SPAQ datasets. Able to handle images with resolution larger than 1000+, and able to compare images with different contents. |
+| DQ-495K + Q-Instruct | Projector, LORA, | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K-QInst) | Trained on DQ-495K and Q-Instruct (see [paper](https://arxiv.org/abs/2311.06783)) datasets. Able to complete multiple-choice, yes-or-no, what, how questions, but degrades in assessing and comparison tasks. |
+| DQ-495K + Q-Pathway | Projector, LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K-QPath) | Trained on DQ-495K and Q-Pathway (see [paper](https://arxiv.org/abs/2311.06783)) datasets. Performs well on real images, but degrades in comparison tasks. |
+| DQ-495K | Projector, LORA | [download](https://huggingface.co/zhiyuanyou/DepictQA2-DQ495K) | Trained on DQ-495K dataset. Used in our paper. |
 
 
 ## Demos
