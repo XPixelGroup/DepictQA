@@ -157,7 +157,7 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
 
 - Check [Installation](#installation) to make sure (1) the environment is installed, (2) CLIP-ViT-L-14, Vicuna-v1.5-7B, and the pretrained delta checkpoint are downloaded and (3) their paths are set in _config.yaml_. 
 
-- Run a specific infer shell (_e.g._, _infer_A_sd_brief.sh_): `sh infer_A_sd_brief.sh id_of_one_gpu`.
+- Run a specific infer shell (_e.g._, _infer_A_brief.sh_): `sh infer_A_brief.sh id_of_one_gpu`.
 
 ### Inference on Custom Dataset
 
@@ -189,8 +189,10 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
     export CUDA_VISIBLE_DEVICES=$1
 
     python $src_dir/infer.py \
-        --meta_path json_path_of_your_dataset \
-        --dataset_name your_dataset_name \
+        --meta_path json_path_1_of_your_dataset \
+                    json_path_2_of_your_dataset \
+        --dataset_name your_dataset_name_1 \
+                       your_dataset_name_2 \
         --task_name task_name \
         --batch_size batch_size \
     ```
@@ -257,10 +259,10 @@ If you find our work useful for your research and applications, please cite usin
 }
 
 
-@article{depictqa_v1,
+@inproceedings{depictqa_v1,
     title={Depicting Beyond Scores: Advancing Image Quality Assessment through Multi-modal Language Models},
     author={You, Zhiyuan and Li, Zheyuan and Gu, Jinjin and Yin, Zhenfei and Xue, Tianfan and Dong, Chao},
-    journal={arXiv preprint arXiv:2312.08962},
-    year={2023}
+    booktitle={European Conference on Computer Vision},
+    year={2024}
 }
 ```
