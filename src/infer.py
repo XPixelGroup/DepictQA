@@ -18,30 +18,54 @@ def parse_args():
     parser = argparse.ArgumentParser(description="infer parameters for DepictQA")
     parser.add_argument("--cfg", type=str, default="config.yaml")
     # infer cfgs, overwrite cfg.data.infer if set
-    parser.add_argument("--meta_path", type=str, default=None)
-    parser.add_argument("--dataset_name", type=str, default=None)
-    parser.add_argument("--task_name", type=str, default=None)
-    parser.add_argument("--batch_size", type=int, default=None)
+    parser.add_argument("--meta_path", type=str, required=True, nargs="+")
+    parser.add_argument("--dataset_name", type=str, required=True, nargs="+")
+    parser.add_argument("--task_name", type=str, required=True, nargs="+")
+    parser.add_argument("--batch_size", type=int, required=True)
     args = parser.parse_args()
     return args
 
 
-def main(args):
+def main(cfg, args):
+    logging.info("cfg: {}".format(pprint.pformat(cfg)))
     logging.info("args: {}".format(pprint.pformat(args)))
     assert os.path.exists(
-        args.model["vision_encoder_path"]
+        cfg.model["vision_encoder_path"]
     ), "vision_encoder_path not exist!"
-    assert os.path.exists(args.model["llm_path"]), "llm_path not exist!"
-    assert os.path.exists(args.model["delta_path"]), "delta_path not exist!"
+    assert os.path.exists(cfg.model["llm_path"]), "llm_path not exist!"
+    assert os.path.exists(cfg.model["delta_path"]), "delta_path not exist!"
 
     # load model
-    model = DepictQA(args, training=False)
-    delta_ckpt = torch.load(args.model["delta_path"], map_location=torch.device("cpu"))
+    model = DepictQA(cfg, training=False)
+    delta_ckpt = torch.load(cfg.model["delta_path"], map_location=torch.device("cpu"))
     model.load_state_dict(delta_ckpt, strict=False)
     model = model.eval().half().cuda()
     Visualization(model).structure_graph()
     logging.info(f"[!] init the LLM over ...")
 
+    # command line has higher priority
+    meta_paths = args.meta_path
+    dataset_names = args.dataset_name
+    assert len(meta_paths) == len(dataset_names)
+    task_names = args.task_name
+    if len(task_names) == 1:
+        task_names = task_names * len(meta_paths)
+    else:
+        assert len(task_names) == len(meta_paths)
+    batch_size = args.batch_size
+    for meta_path, dataset_name, task_name in zip(meta_paths, dataset_names, task_names):
+        args_filter = {
+            "meta_path": meta_path,
+            "dataset_name": dataset_name,
+            "task_name": task_name,
+            "batch_size": batch_size,
+        }
+        cfg.data.infer.update(args_filter)
+        logging.info(f"Handling {meta_path} ...")
+        infer(cfg, model)
+
+
+def infer(args, model):
     # load data
     dataloader = load_valset(args)
     answer_path = os.path.join(
@@ -99,11 +123,4 @@ if __name__ == "__main__":
     args = parse_args()
     with open(args.cfg, "r") as f:
         cfg = EasyDict(yaml.safe_load(f))
-    args = vars(args)
-    args_filter = {}
-    for key in args.keys():
-        if key != "cfg" and args[key] is not None:
-            args_filter[key] = args[key]
-    # command line has higher priority
-    cfg.data.infer.update(args_filter)
-    main(cfg)
+    main(cfg, args)
