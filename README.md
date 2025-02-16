@@ -29,6 +29,8 @@ Official pytorch implementation of the papers:
 
 ## Update
 
+📆 [2025.01] We released [DeQA-Score](https://depictqa.github.io/deqa-score/), a distribution-based depicted image quality assessment model for score regression. [Datasets](https://huggingface.co/datasets/zhiyuanyou/Data-DeQA-Score), [codes](https://github.com/zhiyuanyou/DeQA-Score), and model weights ([full tuning](https://huggingface.co/zhiyuanyou/DeQA-Score-Mix3) / [LoRA tuning](https://huggingface.co/zhiyuanyou/DeQA-Score-LoRA-Mix3)) were available.
+
 📆 [2024.07] DepictQA datasets were released in <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a> / <a href="https://modelscope.cn/datasets/zhiyuanyou/DataDepictQA" target="_blank">modelscope</a>.
 
 📆 [2024.07] [DepictQA-v1](https://depictqa.github.io/depictqa-v1/) was accepted to ECCV 2024.
@@ -242,7 +244,7 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
 
 ## Inference and Evaluation of SRCC / PLCC Results (Voting Method)
 
-We provide scripts to infer and evaluate the SRCC / PLCC results on the KADID10K and TID2013 datasets.
+We provide scripts to infer and evaluate the SRCC / PLCC results on the KADID10K, CSIQ, and TID2013 datasets.
 
 - cd the experiment directory: `cd experiments/MBAPPS`.
 - run the inference script: `sh infer_srcc_plcc_voting.sh id_of_one_gpu`.
@@ -258,13 +260,19 @@ This repository is based on [LAMM](https://github.com/OpenGVLab/LAMM/tree/main).
 If you find our work useful for your research and applications, please cite using the BibTeX:
 
 ```
+@article{deqa_score,
+  title={Teaching Large Language Models to Regress Accurate Image Quality Scores using Score Distribution},
+  author={You, Zhiyuan and Cai, Xin and Gu, Jinjin and Xue, Tianfan and Dong, Chao},
+  journal={arXiv preprint arXiv:2501.11561},
+  year={2025},
+}
+
 @article{depictqa_v2,
     title={Descriptive Image Quality Assessment in the Wild},
     author={You, Zhiyuan and Gu, Jinjin and Li, Zheyuan and Cai, Xin and Zhu, Kaiwen and Dong, Chao and Xue, Tianfan},
     journal={arXiv preprint arXiv:2405.18842},
     year={2024}
 }
-
 
 @inproceedings{depictqa_v1,
     title={Depicting Beyond Scores: Advancing Image Quality Assessment through Multi-modal Language Models},
