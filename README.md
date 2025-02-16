@@ -157,7 +157,7 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
 
 - Check [Installation](#installation) to make sure (1) the environment is installed, (2) CLIP-ViT-L-14, Vicuna-v1.5-7B, and the pretrained delta checkpoint are downloaded and (3) their paths are set in _config.yaml_. 
 
-- Run a specific infer shell (_e.g._, _infer_A_brief.sh_): `sh infer_A_brief.sh id_of_one_gpu`.
+- Run a specific inference script (_e.g._, _infer_A_brief.sh_): `sh infer_A_brief.sh id_of_one_gpu`.
 
 ### Inference on Custom Dataset
 
@@ -180,7 +180,7 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
 
 - Check [Installation](#installation) to make sure (1) the environment is installed, (2) CLIP-ViT-L-14, Vicuna-v1.5-7B, and the pretrained delta checkpoint are downloaded and (3) their paths are set in _config.yaml_. 
 
-- Construct your infer shell as follows.
+- Construct your inference script as follows.
 
     ```
     #!/bin/bash
@@ -208,7 +208,7 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
     | _quality\_single\_B_ | Image B assessment in full-reference |
     | _quality\_single\_B\_noref_ | Image B assessment in non-reference |
 
-- Run your infer shell : `sh your_infer_shell.sh id_of_one_gpu`.
+- Run your inference script: `sh your_infer_script.sh id_of_one_gpu`.
 
 
 ## Evaluation
@@ -240,6 +240,13 @@ Note that **multiple workers can be launched simultaneously**. For each worker, 
     For the calculation of GPT-4 score:
     - `--save_path` (str, required): _*.json_ path to save the evaluation results including scores and reasons. 
 
+## Inference and Evaluation of SRCC / PLCC Results (Voting Method)
+
+We provide scripts to infer and evaluate the SRCC / PLCC results on the KADID10K and TID2013 datasets.
+
+- cd the experiment directory: `cd experiments/MBAPPS`.
+- run the inference script: `sh infer_srcc_plcc_voting.sh id_of_one_gpu`.
+- run the evaluation script: `sh eval_srcc_plcc_voting.sh`.
 
 ## Acknowledgement
 
