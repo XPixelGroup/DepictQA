@@ -29,6 +29,8 @@ Official pytorch implementation of the papers:
 
 ## Update
 
+📆 [2025.02] [DeQA-Score](https://depictqa.github.io/deqa-score/) was accepted to CVPR 2025.
+
 📆 [2025.01] We released [DeQA-Score](https://depictqa.github.io/deqa-score/), a distribution-based depicted image quality assessment model for score regression. [Datasets](https://huggingface.co/datasets/zhiyuanyou/Data-DeQA-Score), [codes](https://github.com/zhiyuanyou/DeQA-Score), and model weights ([full tuning](https://huggingface.co/zhiyuanyou/DeQA-Score-Mix3) / [LoRA tuning](https://huggingface.co/zhiyuanyou/DeQA-Score-LoRA-Mix3)) were available.
 
 📆 [2024.07] DepictQA datasets were released in <a href="https://huggingface.co/datasets/zhiyuanyou/DataDepictQA" target="_blank">huggingface</a> / <a href="https://modelscope.cn/datasets/zhiyuanyou/DataDepictQA" target="_blank">modelscope</a>.
@@ -260,10 +262,10 @@ This repository is based on [LAMM](https://github.com/OpenGVLab/LAMM/tree/main).
 If you find our work useful for your research and applications, please cite using the BibTeX:
 
 ```
-@article{deqa_score,
+@inproceedings{deqa_score,
   title={Teaching Large Language Models to Regress Accurate Image Quality Scores using Score Distribution},
   author={You, Zhiyuan and Cai, Xin and Gu, Jinjin and Xue, Tianfan and Dong, Chao},
-  journal={arXiv preprint arXiv:2501.11561},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition},
   year={2025},
 }
 
