@@ -14,9 +14,9 @@
 
 Official pytorch implementation of the papers: 
 
-- DepictQA-Wild (DepictQA-v2): [paper](https://arxiv.org/abs/2405.18842), [project page](https://depictqa.github.io/depictqa-wild/). 
+- DepictQA-Wild (DepictQA-v2), also named **E**nhanced **D**epict**QA** (EDQA): [paper](https://arxiv.org/abs/2405.18842), [project page](https://depictqa.github.io/depictqa-wild/). 
 
-    Zhiyuan You, Jinjin Gu, Zheyuan Li, Xin Cai, Kaiwen Zhu, Chao Dong, Tianfan Xue, "Descriptive Image Quality Assessment in the Wild," arXiv preprint arXiv:2405.18842, 2024.
+    Zhiyuan You, Jinjin Gu, Xin Cai, Zheyuan Li, Kaiwen Zhu, Chao Dong, Tianfan Xue, "Enhancing Descriptive Image Quality Assessment with A Large-scale Multi-modal Dataset," TIP, 2025.
 
 - DepictQA-v1: [paper](https://arxiv.org/abs/2312.08962), [project page](https://depictqa.github.io/depictqa-v1/). 
 
@@ -28,6 +28,8 @@ Official pytorch implementation of the papers:
 
 
 ## Update
+
+📆 [2025.11] [DepictQA-Wild](https://depictqa.github.io/depictqa-wild/) (DepictQA-v2), also named **E**nhanced **D**epict**QA** ([EDQA](https://depictqa.github.io/depictqa-wild/)), was accepted to TIP.
 
 📆 [2025.02] [DeQA-Score](https://depictqa.github.io/deqa-score/) was accepted to CVPR 2025.
 
@@ -263,23 +265,25 @@ If you find our work useful for your research and applications, please cite usin
 
 ```
 @inproceedings{deqa_score,
-  title={Teaching Large Language Models to Regress Accurate Image Quality Scores using Score Distribution},
-  author={You, Zhiyuan and Cai, Xin and Gu, Jinjin and Xue, Tianfan and Dong, Chao},
-  booktitle={IEEE Conference on Computer Vision and Pattern Recognition},
-  year={2025},
+    title={Teaching Large Language Models to Regress Accurate Image Quality Scores using Score Distribution},
+    author={You, Zhiyuan and Cai, Xin and Gu, Jinjin and Xue, Tianfan and Dong, Chao},
+    booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+    pages={14483--14494},
+    year={2025}
 }
 
 @article{depictqa_v2,
-    title={Descriptive Image Quality Assessment in the Wild},
-    author={You, Zhiyuan and Gu, Jinjin and Li, Zheyuan and Cai, Xin and Zhu, Kaiwen and Dong, Chao and Xue, Tianfan},
-    journal={arXiv preprint arXiv:2405.18842},
-    year={2024}
+    title={Enhancing Descriptive Image Quality Assessment with A Large-scale Multi-modal Dataset},
+    author={You, Zhiyuan and Gu, Jinjin and Cai, Xin and Li, Zheyuan and Zhu, Kaiwen and Dong, Chao and Xue, Tianfan},
+    journal={IEEE Transactions on Image Processing},
+    year={2025}
 }
 
 @inproceedings{depictqa_v1,
     title={Depicting Beyond Scores: Advancing Image Quality Assessment through Multi-modal Language Models},
     author={You, Zhiyuan and Li, Zheyuan and Gu, Jinjin and Yin, Zhenfei and Xue, Tianfan and Dong, Chao},
     booktitle={European Conference on Computer Vision},
+    pages={259--276},
     year={2024}
 }
 ```
