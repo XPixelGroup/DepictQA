@@ -1,6 +1,6 @@
 # DQ-495K Dataset Construction
 
-Official python implementation of the DQ-495K dataset construction in [Descriptive Image Quality Assessment in the Wild](https://arxiv.org/abs/2405.18842).
+Official python implementation of DQ-495K (also named EDQA-495K) dataset construction in [Enhancing Descriptive Image Quality Assessment with A Large-scale Multi-modal Dataset](https://arxiv.org/abs/2405.18842).
 
 ![Image text](docs/dataset.png)
 
@@ -71,18 +71,26 @@ We use some codes from [imagecorruptions](https://github.com/bethgelab/imagecorr
 If you find our work useful for your research and applications, please cite using the BibTeX:
 
 ```
-@article{depictqa_v2,
-    title={Descriptive Image Quality Assessment in the Wild},
-    author={You, Zhiyuan and Gu, Jinjin and Li, Zheyuan and Cai, Xin and Zhu, Kaiwen and Dong, Chao and Xue, Tianfan},
-    journal={arXiv preprint arXiv:2405.18842},
-    year={2024}
+@inproceedings{deqa_score,
+    title={Teaching Large Language Models to Regress Accurate Image Quality Scores using Score Distribution},
+    author={You, Zhiyuan and Cai, Xin and Gu, Jinjin and Xue, Tianfan and Dong, Chao},
+    booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+    pages={14483--14494},
+    year={2025}
 }
 
+@article{depictqa_v2,
+    title={Enhancing Descriptive Image Quality Assessment with A Large-scale Multi-modal Dataset},
+    author={You, Zhiyuan and Gu, Jinjin and Cai, Xin and Li, Zheyuan and Zhu, Kaiwen and Dong, Chao and Xue, Tianfan},
+    journal={IEEE Transactions on Image Processing},
+    year={2025}
+}
 
-@article{depictqa_v1,
+@inproceedings{depictqa_v1,
     title={Depicting Beyond Scores: Advancing Image Quality Assessment through Multi-modal Language Models},
     author={You, Zhiyuan and Li, Zheyuan and Gu, Jinjin and Yin, Zhenfei and Xue, Tianfan and Dong, Chao},
-    journal={arXiv preprint arXiv:2312.08962},
-    year={2023}
+    booktitle={European Conference on Computer Vision},
+    pages={259--276},
+    year={2024}
 }
 ```
