@@ -111,10 +111,6 @@ Official pytorch implementation of the papers:
     <img src="docs/demo.png">
 </p>
 
-### Online Demo
-
-We provide an online demo (coming soon) deployed on huggingface spaces.
-
 ### Gradio Demo
 
 We provide a gradio demo for local test. 
